@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+}
+textarea {
+    width: 80%;
+    height: 100px;
+    background-color: rgba(199, 197, 197, 0.62);
+}
+select, button {
+    font-size: 1.2em;
+    padding: 5px;
+}
+.output {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #000;
+    display: inline-block;
+    background-color: #f4f4f4;
+}
+
+body {
+    background-image: url('obrazky/pozadi.webp');
+    background-size: cover;
+    background-position: center;
+}
