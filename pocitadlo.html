@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Počet dnů mezi daty</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      text-align: center;
+      border: 2px solid #000; /* Přidání rámečku */
+      padding: 20px; /* Přidání vnitřního odsazení */
+      border-radius: 10px; /* Zaoblení rohů */
+      background-color: #7fffd4; /* Změna barvy pozadí */
+
+    }
+    input, button {
+      margin: 5px;
+      padding: 8px;
+    }
+
+    /* Stylování pro výsledek */
+    #result {
+      white-space: pre;
+      font-weight: bold;
+      background-color: #bbadad;
+    }
+
+
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Výpočet počtu dnů</h2>
+  <!-- Vstupní pole pro zadání počátečního a konečného data -->
+  <label for="start">Počáteční datum:</label>
+  <input type="date" id="start">
+  <br>
+  <label for="end">Konečné datum:</label>
+  <input type="date" id="end">
+  <br>
+  <!-- Tlačítko pro spuštění výpočtu -->
+  <button onclick="calculateDays()">Spočítat</button>
+  <p id="result"></p>
+</div>
+
+<script>
+  // Nastavení vlastního textu a označení výsledné hodnoty
+  let customText = "Počet dní"; // Změň tento text podle potřeby
+  let priceLabel = "Cena"; // Text pro násobenou hodnotu
+  let additionalText = "Kč bez DPH"; // Další text za cenou
+
+  function calculateDays() {
+    // Získání hodnot z formuláře
+    let startDate = new Date(document.getElementById("start").value);
+    let endDate = new Date(document.getElementById("end").value);
+
+    // Kontrola, zda byla vyplněna obě data
+    if (isNaN(startDate) || isNaN(endDate)) {
+      document.getElementById("result").innerText = "Prosím vyplňte obě data.";
+      return;
+    }
+
+    // Výpočet rozdílu mezi daty v milisekundách a převod na dny
+    let timeDiff = endDate - startDate;
+    let dayCount = timeDiff / (1000 * 60 * 60 * 24);
+
+    // Kontrola, zda je konečné datum větší než počáteční
+    if (dayCount < 0) {
+      document.getElementById("result").innerText = "Počáteční datum musí být menší než konečné.";
+    } else {
+      // Nastavení násobku podle podmínky
+      let multiplier = dayCount <= 14 ? 100 : 95; // Pokud je 14 a méně dní, násobek je 100, jinak 95
+
+      // Výpis výsledku s vlastním textem a přejmenovanou násobenou hodnotou
+      document.getElementById("result").innerText = `${customText}: ${dayCount}\n${priceLabel}: ${dayCount * multiplier} ${additionalText}`;
+    }
+  }
+</script>
+</body>
+</html>
